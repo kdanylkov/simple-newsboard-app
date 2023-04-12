@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="article-entry">
+        <h2>{{ object.title }}</h2>
+        <p>{{ object.author }} | {{ object.date }}</p>
+        <p>{{ object.body }}</p>
+    </div>
+    {% if request.user == object.author %}
+        <p>
+            <a class="btn btn-link" href="{% url 'article_edit' object.pk %}">Edit</a> | <a class="btn btn-link" href="{% url 'article_delete' object.pk %}">Delete</a>
+        </p>
+    {% endif %}
+    <p>
+        Back to <a href="{% url 'article_list' %}">All Articles</a>
+    </p>
+{% endblock content %}
